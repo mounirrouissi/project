@@ -1,32 +1,29 @@
 package com.example.demo.controller;
 
-import com.example.demo.models.Commande;
-import com.example.demo.repo.CommandeRepo;
-import com.example.demo.service.CommandeService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import com.example.demo.models.Categorie;
+import com.example.demo.service.CategorieService;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("api/v1/commandes/")
-@AllArgsConstructor
-@NoArgsConstructor
-public class CommandeController {
-    private CommandeService commandeService;
+@RestController
+@RequestMapping("/categories")
+@Api(value="onlinestore", description="Operations pertaining to catorgies in Online Store")
 
-    @PostMapping("")
-    public void addCommande(@RequestBody Commande commande){
-        this.commandeService.addCommande(commande);
-    }
-    @PutMapping("{numero}")
-    public Commande editCommande(@PathVariable(name = "numero") Long numero,@RequestBody Commande commande){
-        return this.commandeService.editCommande(numero,commande);
+public class CategoryController {
+    private CategorieService categoryService;
 
+    public CategoryController(CategorieService categoryService) {
+        this.categoryService = categoryService;
     }
-    @GetMapping("")
-    public List<Commande> getAllCommandes(){
-        return this.commandeService.getAllCommandes();
+@PostMapping("/add")
+    public void addCategorie(@RequestBody Categorie categorie){
+        this.categoryService.addCategorie(categorie);
+    }
+  @GetMapping("/all")
+    public List<Categorie> getAllCategories(){
+        return this.categoryService.getAllCategories();
     }
 
 }

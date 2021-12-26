@@ -1,13 +1,27 @@
 package com.example.demo.models;
 
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(notes = "The database generated product ID")
+
+    private  Long id;
+
     private String code;
     private String nom;
     private String prenom;
@@ -19,7 +33,6 @@ public class Client {
     private String fax;
     private String gsm;
     private String email;
-    @OneToMany
-    @JoinColumn(name = "categorie_id")
+    @OneToMany(mappedBy = "client")
     private List<Commande> commandes;
 }

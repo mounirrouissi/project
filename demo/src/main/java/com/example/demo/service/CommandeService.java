@@ -17,15 +17,19 @@ public class CommandeService {
 public void addCommande(Commande commande){
         this.commandeRepo.save(commande);
 }
-public Commande editCommande(Commande commande){
-    Commande commandeToEdit = this.commandeRepo.getById(commande.getNumero());
-        return commande.builder().date(commande.getDate())
+public Commande editCommande(Long commandeNumero, Commande commande){
+    Commande commandeToEdit = this.commandeRepo.getById(commandeNumero);
+        return commandeToEdit.builder().date(commande.getDate())
                        .prixUnitaire(commande.getPrixUnitaire())
-                       .date(commande.getDate())
+                       .etat(commande.getEtat())
                         .build();
 
 }
 public List<Commande> getAllCommandes(){
         return this.commandeRepo.findAll();
 }
+
+    public Commande getCommandeById(long anyLong) {
+        return this.commandeRepo.getById(anyLong);
+    }
 }

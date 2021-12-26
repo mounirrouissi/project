@@ -1,32 +1,38 @@
 package com.example.demo.controller;
 
 import com.example.demo.models.Commande;
-import com.example.demo.repo.CommandeRepo;
 import com.example.demo.service.CommandeService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("api/v1/commandes/")
-@AllArgsConstructor
-@NoArgsConstructor
+@RestController
+@RequestMapping("/commandes")
+@Api(value="onlinestore", description="Operations pertaining to commande in Online Store")
 public class CommandeController {
-private CommandeService commandeService;
+    private CommandeService commandeService;
 
-@PostMapping
+    public CommandeController(CommandeService commandeService) {
+        this.commandeService = commandeService;
+    }
+
+    @PostMapping("/add")
     public void addCommande(@RequestBody Commande commande){
         this.commandeService.addCommande(commande);
     }
-    @PutMapping("{numero}")
-    public Commande editCommande(@PathVariable(name = "numero") Long numero,@RequestBody Commande commande){
-        return this.commandeService.editCommande(numero,commande);
+    @PutMapping("{id}")
+    public Commande editCommande(@PathVariable(name = "id") Long id,@RequestBody Commande commande){
+        return this.commandeService.editCommande(id,commande);
 
     }
-    @GetMapping("")
+    @GetMapping("/all")
     public List<Commande> getAllCommandes(){
         return this.commandeService.getAllCommandes();
+    }
+   @GetMapping("/{id}")
+    public Commande getCommandeById(@PathVariable Long id){
+        return this.commandeService.getCommandeById(id);
     }
 
 }

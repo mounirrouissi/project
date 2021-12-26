@@ -17,15 +17,20 @@ public class ProduitService {
 public void addProduit(Produit produit){
         this.produitRepo.save(produit);
 }
-public void editProduit(Produit produit){
+public Produit editProduit(Long numero, Produit produit){
 /*    Produit produitToEdit = this.produitRepo.getById(produit.getNumero());
         return produit.builder().date(produit.getDate())
                        .prixUnitaire(produit.getPrixUnitaire())
                        .date(produit.getDate())
                         .build();*/
 
+    return produit;
 }
 public List<Produit> getAllProduits(){
         return this.produitRepo.findAll();
 }
+
+    public Produit getProduitById(Long id) {
+        return this.produitRepo.getById(id);
+    }
 }
