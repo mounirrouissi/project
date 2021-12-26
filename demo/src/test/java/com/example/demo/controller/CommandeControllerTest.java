@@ -27,20 +27,6 @@ class CommandeControllerTest {
     @Test
     void getCommande_ForSavedCommande_Returned() throws Exception
     {
-        //given
-        given(commandeService.getCommandeById(anyLong())).willReturn(
-                Commande.builder()
-                        .id(1l)
-                        .name("Mark")
-                        .grade(10)
-                        .build()
-        );
 
-        //when then
-        mockMvc.perform(get("/students/1"))
-               .andExpect(status().isOk())
-               .andExpect(jsonPath("id").value(1l))
-               .andExpect(jsonPath("name").value("Mark"))
-               .andExpect(jsonPath("grade").value(10));
     }
 }
