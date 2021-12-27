@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.models.Commande;
+import com.example.demo.models.Produit;
 import com.example.demo.repo.CommandeRepo;
+import com.example.demo.repo.ProduitRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,25 +11,24 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.transaction.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @Transactional
-class CommandeServiceTest {
+class ProduitServiceTest {
 
     @Autowired
-    private CommandeRepo Repo;
+    private ProduitRepo Repo;
     @Autowired
-    private CommandeService service;
+    private ProduitService service;
 
     @Test
-    void addCommande() {
+    void addProduit() {
         //Given
-        Commande savedCommande = this.Repo.save(new Commande(12L,"123"));
+        Produit savedProduit = this.Repo.save(new Produit(123L,"12345","","","",null,null,null,null));
         //When
-        Commande commandeById = this.service.getCommandeById(12L);
+        Produit produitById = this.service.getProduitById(123L);
         //Then
-        assertThat(commandeById.getNumero()).isEqualTo("123");
+        assertThat(produitById.getModele()).isEqualTo("12345");
     }
 
 

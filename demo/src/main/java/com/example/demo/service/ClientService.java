@@ -29,4 +29,8 @@ public void editClient(Client client){
 public List<Client> getAllClients(){
         return this.clientRepo.findAll();
 }
+
+    public Client getClientById(long l) {
+        return this.clientRepo.findById(l).get();
+    }
 }

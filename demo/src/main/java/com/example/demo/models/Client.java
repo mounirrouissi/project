@@ -19,9 +19,7 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(notes = "The database generated product ID")
-
     private  Long id;
-
     private String code;
     private String nom;
     private String prenom;

@@ -35,4 +35,9 @@ public class Commande {
     public Commande(String numero) {
         this.numero = numero;
     }
+       public Commande(Long id,String numero) {
+        this.id=id;
+        this.numero = numero;
+    }
+
 }
