@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/commandes")
+@RequestMapping("api/commandes")
 @Api(value="onlinestore", description="Operations pertaining to commande in Online Store")
 public class CommandeController {
     private CommandeService commandeService;
@@ -17,16 +17,20 @@ public class CommandeController {
         this.commandeService = commandeService;
     }
 
-    @PostMapping("/add")
+    public CommandeController() {
+
+    }
+
+    @PostMapping("/")
     public void addCommande(@RequestBody Commande commande){
         this.commandeService.addCommande(commande);
     }
-    @PutMapping("{id}")
+ /*   @PutMapping("/{id}")
     public Commande editCommande(@PathVariable(name = "id") Long id,@RequestBody Commande commande){
         return this.commandeService.editCommande(id,commande);
 
-    }
-    @GetMapping("/all")
+    }*/
+    @GetMapping("/")
     public List<Commande> getAllCommandes(){
         return this.commandeService.getAllCommandes();
     }
@@ -34,5 +38,4 @@ public class CommandeController {
     public Commande getCommandeById(@PathVariable Long id){
         return this.commandeService.getCommandeById(id);
     }
-
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/produits")
+@RequestMapping("api/produits")
 @Api(value="onlinestore", description="Operations pertaining to produits in Online Store")
 public class ProduitController {
     private ProduitService service;
@@ -17,11 +17,11 @@ public class ProduitController {
         this.service = service;
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public void addProduit(@RequestBody Produit commande){
         this.service.addProduit(commande);
     }
-    @PutMapping("{id}")
+    @PutMapping
     public Produit editProduit(@PathVariable(name = "id") Long id, @RequestBody Produit commande){
         return this.service.editProduit(id,commande);
 
